@@ -33,8 +33,24 @@ async function searchTextOnGoogle() {
     "accessKey": KEY,
     name: "test session", // name of the test
     build: platform + browserName + version, // name of the build
-    "smartUI.project": "demo",
-    "smartUI.build": "first-build"
+    "smartUI.project": "dot",
+    "smartUI.build": "second",
+    "smartUI.options": {
+      "output": {
+        "errorColor": {
+          "red": 200,
+          "green": 0,
+          "blue": 255
+        },
+        "errorType": "movement",
+        "transparency": 0.3,
+        "largeImageThreshold": 100,
+        "useCrossOrigin": false,
+        "outputDiff": true
+      },
+      "scaleToSameSize": true,
+      "ignore": "antialiasing"
+    }
   };
 
   if (tunnel === "true") {
@@ -67,7 +83,7 @@ async function startTest(gridUrl, capabilities, name) {
   console.log(caps.name, " : Setup Time :", duration.asSeconds());
 
   // navigate to a url
-  let url = "https://www.lambdatest.com/blog/";
+  let url = "https://www.lambdatest.com/blog";
   console.log(url);
   await driver
     .get(url)
