@@ -3,6 +3,7 @@ const By = webdriver.By;
 var async1 = require("asyncawait/async");
 var await1 = require("asyncawait/await");
 var moment = require("moment");
+var waitTime = 2 // 2 seconds
 
 // username: Username can be found at automation dashboard
 const USERNAME = process.env.LT_USERNAME || "username";
@@ -33,8 +34,9 @@ async function searchTextOnGoogle() {
     "accessKey": KEY,
     name: "test session", // name of the test
     build: platform + browserName + version, // name of the build
-    "smartUI.project": "dot",
-    "smartUI.build": "second",
+    "smartUI.project": "dash",
+    // will generate random smartUI build if not specified
+    // "smartUI.build": "first", 
     "smartUI.options": {
       "output": {
         "errorColor": {
@@ -83,7 +85,7 @@ async function startTest(gridUrl, capabilities, name) {
   console.log(caps.name, " : Setup Time :", duration.asSeconds());
 
   // navigate to a url
-  let url = "https://www.lambdatest.com/blog";
+  let url = "https://www.lambdatest.com";
   console.log(url);
   await driver
     .get(url)
@@ -91,17 +93,20 @@ async function startTest(gridUrl, capabilities, name) {
       const session = driver.getSession();
 
       // For Smartui TakeScreenshot
-      console.log("smartui.takeScreenshot, calling ")
-      driver.executeScript("smartui.takeScreenshot").then(out => {
-        console.log("smartui.takeScreenshot, RESPONSE :", out)
-        return
-      });
+      setTimeout(function () {
+        console.log("taking screenshot ...")
+        driver.executeScript("smartui.takeScreenshot").then(out => {
+          console.log("RESPONSE :", out)
+          return
+        });
+      }, waitTime * 1000);
+
 
       driver.getTitle().then(function (title) {
         setTimeout(function () {
           driver.executeScript("lambda-status=passed");
           driver.quit();
-        }, 10000);
+        }, 15000);
       });
     })
     .catch(function (err) {
@@ -111,6 +116,5 @@ async function startTest(gridUrl, capabilities, name) {
       driver.executeScript("lambda-status=failed");
       driver.quit();
     });
-  console.log(caps.name + " Test End");
 }
 
