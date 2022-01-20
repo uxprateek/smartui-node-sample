@@ -1,7 +1,5 @@
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
-var async1 = require("asyncawait/async");
-var await1 = require("asyncawait/await");
 var moment = require("moment");
 var waitTime = 2 // 2 seconds
 
