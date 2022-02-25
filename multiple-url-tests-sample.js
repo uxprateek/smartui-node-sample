@@ -79,8 +79,8 @@ async function startTest(gridUrl, capabilities, name) {
   console.log(caps.name, " : Setup Time :", duration.asSeconds());
 
   // navigate to a url
-  let url = "https://www.meundies.com/";
-  let url2 = "https://www.meundies.com/t/women/undies/cheeky-brief";
+  let url = "https://demo.lambdatest.com/";
+  let url2 = "https://demo.lambdatest.com/";
   console.log(url);
   console.log(url2);
 
