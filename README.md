@@ -1,8 +1,21 @@
 # SmartUI NodeJS Sample
 
-### Set LambdaTest Username and Access Key in environment variables.
+### Prerequisites
+1. Node version <=14 required
+```
+node --version
+```
 
-   <b>For Linux/macOS:</b>
+2. You can switch the node version by below command
+```
+nvm install 12.0.0
+node --version
+```
+
+### Steps to Run the Test
+Step 1. Set LambdaTest Username and Access Key in environment variables.
+
+  <b>For Linux/macOS:</b>
  
 ```
 export LT_USERNAME="YOUR_USERNAME"
@@ -16,27 +29,36 @@ set LT_USERNAME="YOUR_USERNAME"
 set LT_ACCESS_KEY="YOUR ACCESS KEY"
 ```
 
-### Install Dependencies and Execute tests
-
-
-#### Prerequisite
-
-#### Node version <=14 required
+Step 2. Clone the smartui-node-sample Repo.
 ```
-node --version
+git clone https://github.com/LambdaTest/smartui-node-sample
 ```
 
-<b>You can switch the node version by below command</b>
+Step 3. Install Dependencies.
 
 ```
-nvm install 12.0.0
-node --version
+npm i
 ```
 
-#### Install Dependencies
-
-```
-$ npm i
-$ node test.js
-
-```
+### Running Test
+We have many different examples revolving around different usecase. 
+#### Test Cases
+1. General Capability Change.
+    * ErrorSetting.js - This Test is an example of how error settings can be modified. To run this test run.
+    ```
+    cd test/generalCases && node errorSettting.js
+    ```
+    
+    * Transparency.js - This Test is to show how to alter the opacity of the comparison screenshot. To run this test run.
+    ```
+    cd test/generalCases && node transparency.js
+    ```
+    * BoundingBoxes.js - This Test shows an example of comparing only a certain area in the screenshot. To run this test run.
+    ```
+    cd test/generalCases && node boundingBoxes.js
+    ```
+    * IgnoredBoxes.js - This test is for excluding certain areas in the screenshot for comparison. To run this test run.
+    ```
+    cd test/generalCases && node ignoredBoxes.js
+    ```
+    
