@@ -46,19 +46,19 @@ We have many different examples revolving around different usecase.
 1. General Capability Change.
     * ErrorSetting.js - This Test is an example of how error settings can be modified. To run this test run.
     ```
-    cd test/generalCases && node errorSettting.js
+    npm run error
     ```
     
     * Transparency.js - This Test is to show how to alter the opacity of the comparison screenshot. To run this test run.
     ```
-    cd test/generalCases && node transparency.js
+    npm run transparency
     ```
     * BoundingBoxes.js - This Test shows an example of comparing only a certain area in the screenshot. To run this test run.
     ```
-    cd test/generalCases && node boundingBoxes.js
+    npm run boundingBox
     ```
     * IgnoredBoxes.js - This test is for excluding certain areas in the screenshot for comparison. To run this test run.
     ```
-    cd test/generalCases && node ignoredBoxes.js
+    npm run ignoredBox
     ```
     

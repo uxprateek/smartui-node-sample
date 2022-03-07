@@ -27,81 +27,57 @@
 
 const webdriver = require("selenium-webdriver");
 var moment = require("moment");
-var waitTime = 4
-
-// username: Username can be found at automation dashboard
-const USERNAME = process.env.LT_USERNAME || "username";
-
-// AccessKey:  AccessKey can be generated from automation dashboard or profile section
-const KEY = process.env.LT_ACCESS_KEY || "accessKey";
-
-// gridUrl: gridUrl can be found at automation dashboard
-//const GRID_HOST = process.env.GRID_HOST || "@hub.sushobhit.dev.lambdatest.io/wd/hub";    //dev
-const GRID_HOST =
-process.env.GRID_HOST || "@beta-smartui-hub.lambdatest.com/wd/hub";    //connect to beta hub
+var waitTime = 2
 
 async function boundingBoxesSearchGoogle(){
-    var keys = process.argv;
-    let parallelCount = keys[2] || 1;
-    let tunnel = keys[3] || false;
-    let platform = keys[4] || "Windows 10";
-    let browserName = keys[5] || "chrome";
-    let version = keys[6] || "latest";
+     // username: Username can be found at automation dashboard
+     const USERNAME = process.env.LT_USERNAME || "username";
 
-    const box1={
-        left: 100,
-        top: 200,
-        right: 200,
-        bottom: 600
-    }
-
-    const box2={
-        left: 200,
-        top: 200,
-        right: 200,
-        bottom: 600
-    }
-  
-    // Setup Input capabilities
-    let capabilities = {
-      platform: platform,
-      browserName: browserName,
-      version: version,
-      queueTimeout: 300,
-      visual: true,
-      "user": USERNAME,
-      "accessKey": KEY,
-      name: browserName + platform + version, // name of the test
-      build: platform + browserName + version, // name of the build
-      "smartUI.project": "boundingBoxesTest",  //******* NOTE - You need to replace this with your newly created project name. *****/
-  
-      "smartUI.options": {
-        "output": {
-          "errorColor": {   // Specifies the error Color in it.
-            "red": 255,
-            "green": 0,
-            "blue": 0 
-          },
-          "errorType": "movement",  
-          "transparency": 0.5,
-          "largeImageThreshold": 100,
-          "useCrossOrigin": false,
-          "outputDiff": true
-        },
-        "scaleToSameSize": true,
-        "ignore": "antialiasing",
-        "boundingBox" : [box1,box2]  // Here we can provide a single box or an array pf boxes.
-      }
-    };
-  
-    var gridUrl = "https://" + USERNAME + ":" + KEY + GRID_HOST;
-    console.log(gridUrl);
-    console.log(capabilities);
-    console.log("Running " + parallelCount + " parallel tests ");
-    let i = 1;
-    for (i = 1; i <= parallelCount; i++) {
-      startTest(gridUrl, capabilities, "Test " + i);
-    }
+     // AccessKey:  AccessKey can be generated from automation dashboard or profile section
+     const KEY = process.env.LT_ACCESS_KEY || "accessKey";
+ 
+     // gridUrl: gridUrl can be found at automation dashboard
+     //const GRID_HOST = process.env.GRID_HOST || "@hub.sushobhit.dev.lambdatest.io/wd/hub";    //dev
+     const GRID_HOST =
+     process.env.GRID_HOST || "@beta-smartui-hub.lambdatest.com/wd/hub";    //connect to beta hub
+ 
+     // Define the cordinates of the boxes.
+     const box1={
+         left: 700,
+         top: 200,
+         right: 200,
+         bottom: 600
+     }
+ 
+     const box2={
+         left: 700,
+         top: 500,
+         right: 200,
+         bottom: 300
+     }
+   
+     // Setup Input capabilities
+     let capabilities = {
+       platform: "Windows 10",
+       browserName: "chrome",
+       version: "latest",
+       queueTimeout: 300,
+       visual: true,
+       "user": USERNAME,
+       "accessKey": KEY,
+       name: "SmartUi Bounding Boxes Test", // name of the test
+       build: "SmartUi Bounding Boxes Build", // name of the build
+       "smartUI.project": "ignoredBoxesTest",  //******* NOTE - You need to replace this with your newly created project name. *****/
+   
+       "smartUI.options": {
+         "boundingBox" : [box1,box2],  // Here we can provide a single box or an array of boxes.
+       }
+     };
+   
+     var gridUrl = "https://" + USERNAME + ":" + KEY + GRID_HOST;
+    
+     console.log("Running test for Bounding Boxes ");
+     startTest(gridUrl, capabilities, "Test 1");
 }
 
 async function startTest(gridUrl, capabilities, name) {
@@ -125,14 +101,11 @@ async function startTest(gridUrl, capabilities, name) {
   await driver
     .get(url)
     .then(function () {
-      const session = driver.getSession();
-
       // For Smartui TakeScreenshot
       setTimeout(function () {
         console.log("taking screenshot ...")
         driver.executeScript("smartui.takeScreenshot").then(out => {
           console.log("RESPONSE :", out)
-          return;
         });
       }, waitTime * 1000);
 

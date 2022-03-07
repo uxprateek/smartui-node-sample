@@ -8,7 +8,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js && node multiple-url-sample.js"
+    "test": "node test.js && node multiple-url-sample.js",
+    "ignoredBox": "cd tests/generalCases && node ignoredBoxes.js",
+    "boundingBox": "cd tests/generalCases && node boundingBoxes.js",
+    "error": "cd tests/generalCases && node errorSettings.js",
+    "transparency": "cd tests/generalCases && node transparency.js"
   },
   "repository": {
     "type": "git",
