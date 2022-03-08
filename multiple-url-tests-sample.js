@@ -30,7 +30,7 @@ async function searchTextOnGoogle() {
     "accessKey": KEY,
     name: browserName + platform + version, // name of the test
     build: platform + browserName + version, // name of the build
-    "smartUI.project": "<Your Project Name>",
+    "smartUI.project": "smartuigithub",
 
     // will generate random smartUI build if not specified
     // "smartUI.build": "<Your Build Name for Selenium Tests>", 
