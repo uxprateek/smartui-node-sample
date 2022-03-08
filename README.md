@@ -40,8 +40,9 @@ Step 3. Install Dependencies.
 npm i
 ```
 
+
 ### Running Test
-We have many different examples revolving around different usecase. 
+We have many different examples revolving around different usecases. 
 #### Test Cases
 1. General Capability Change.
     * ErrorSetting.js - This Test is an example of how error settings can be modified. To run this test run.
@@ -62,3 +63,30 @@ We have many different examples revolving around different usecase.
     npm run ignoredBox
     ```
     
+
+```
+
+
+### Execute Tests on Multiple resolutions
+
+If you want to execute visual regression tests on multiple resolutions, need to add capability `resolution` in capabilities option.
+```
+  let capabilities = {
+      ...
+      resolution = "1920x1080";
+      ...
+  }
+```
+
+Few common resolutions are
+- 1024x768
+- 1280x800
+- 1600x1200
+- 1920x1080
+- 2560x1440
+
+#### Run Test on `1024x768` resolution 
+```
+$ node custom-resolutions.js 1024x768
+```
+
