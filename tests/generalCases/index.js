@@ -23,18 +23,9 @@ async function test(){
     }
 
     // Setup Input capabilities
-    let capabilities = {
-      platform: "Windows 10",
-      browserName: "chrome",
-      version: "latest",
-      queueTimeout: 300,
-      visual: true,
-      "user": USERNAME,
-      "accessKey": KEY,
-      name: "SmartUi Transparency Test", // name of the test
-      build: "Smart Ui Transparency Build", // name of the build
-      "smartUI.project": "demo23",  //******* NOTE - You need to replace this with your newly created project name. *****/
-    };
+    let capabilities =require("../../config.json");
+    capabilities["user"]=USERNAME;
+    capabilities["accessKey"]=KEY;
 
     // Running General test.
     generalTest(capabilities,credentials).then(function(status){
