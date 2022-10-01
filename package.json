@@ -8,8 +8,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js && node multiple-url-sample.js",
-    "generalTest": "cd tests/generalCases && node index.js"
+    "start" : "node ./tests/generalCases/index.js"
   },
   "repository": {
     "type": "git",

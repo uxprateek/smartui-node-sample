@@ -3,8 +3,23 @@ let  errorTest= require("./errorSetting");
 let ignoredBoxesTest= require("./ignoredBoxes");
 let transparencyTest=require("./transparency");
 let generalTest=require("./general");
+let ignoreAreasColoredWith=require("./ignoreAreasColoredWith");
+let helpLogger = require("../../util/helpLogger");
+let validCommands = require("../../util/validCommands")
 
 async function test(){
+
+    // the command line argument passed while executing
+    let arg =  process.argv.slice(2)[0];
+
+    if (!arg) {
+        arg = "all"
+    }
+
+    // check if the argument is a valid command or not
+    if (!Object.values(validCommands).includes(arg)) {
+        helpLogger();        
+    }
 
     // username: Username can be found at automation dashboard
     const USERNAME = process.env.LT_USERNAME || "username";
@@ -28,40 +43,60 @@ async function test(){
     capabilities["accessKey"]=KEY;
 
     // Running General test.
-    generalTest(capabilities,credentials).then(function(status){
-        console.log("Successfully Executed Test.");
-    }).catch(function(err){
-        console.log("Test Failed "+err);
-    });
+    if(arg === validCommands.all || arg === validCommands.general)
+    {
+        generalTest(capabilities,credentials).then(function(status){
+            console.log("Successfully Executed General Test.");
+        }).catch(function(err){
+            console.log("Test Failed "+err);
+        });
+    } 
     
     // Running Error Setting Test.
-    errorTest(capabilities,credentials).then(function(status){
-        console.log("Successfully Executed Error Settings Test.");
-    }).catch(function(err){
-        console.log("Error Seting Test Failed "+err);
-    });
+    if(arg === validCommands.all || arg == validCommands.error) {
+        errorTest(capabilities,credentials).then(function(status){
+            console.log("Successfully Executed Error Settings Test.");
+        }).catch(function(err){
+            console.log("Error Seting Test Failed "+err);
+        });
+    }
 
-    // Running Transparency Test.
-    transparencyTest(capabilities,credentials).then(function(status){
-        console.log("Successfully Executed Transparency Test.");
-    }).catch(function(err){
-        console.log("Transparency test Failed "+err);
-    });
-
-    // Running Bounding Box test.
-    boundingBoxesTest(capabilities,credentials).then(function(status){
-        console.log("Successfully Executed Bounding Boxes Test.");
-    }).catch(function(err){
-        console.log("Bounding Boxes test Failed "+err);
-    });
-
-    // Running Ignored Box Test.
-    ignoredBoxesTest(capabilities,credentials).then(function(status){
-        console.log("Successfully Executed Ignored Boxes Test.");
-    }).catch(function(err){
-        console.log("Ignored Boxes test Failed "+err);
-    });
+    //Running Transparency Test.
+    if(arg === validCommands.all || arg == validCommands.transparency) {
+        transparencyTest(capabilities,credentials).then(function(status){
+            console.log("Successfully Executed Transparency Test.");
+        }).catch(function(err){
+            console.log("Transparency test Failed "+err);
+        });
+    }
     
+    // Running Bounding Box test.
+    if(arg === validCommands.all || arg == validCommands.boundingBoxes) {
+        boundingBoxesTest(capabilities,credentials).then(function(status){
+            console.log("Successfully Executed Bounding Boxes Test.");
+        }).catch(function(err){
+            console.log("Bounding Boxes test Failed "+err);
+        });
+    }
+
+    
+    // Running Ignored Box Test.
+    if(arg === validCommands.all || arg == validCommands.ignoredBoxes) {
+        ignoredBoxesTest(capabilities,credentials).then(function(status){
+            console.log("Successfully Executed Ignored Boxes Test.");
+        }).catch(function(err){
+            console.log("Ignored Boxes test Failed "+err);
+        });
+    }
+
+     // Running Ignore Areas Colored Test.
+     if(arg === validCommands.all || arg == validCommands.ignoreAreasColoredWith) {
+        ignoreAreasColoredWith(capabilities,credentials).then(function(status){
+            console.log("Successfully Executed Ignore Areas Colored Test.");
+        }).catch(function(err){
+            console.log("Ignore Areas Colored test Failed "+err);
+        });
+    }  
 }
 
 test();
