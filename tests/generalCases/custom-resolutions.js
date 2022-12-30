@@ -12,7 +12,7 @@ const KEY = process.env.LT_ACCESS_KEY || "accessKey";
 // gridUrl: gridUrl can be found at automation dashboard
 //const GRID_HOST = process.env.GRID_HOST || "@hub.sushobhit.dev.lambdatest.io/wd/hub";    //dev
 const GRID_HOST =
-  process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";    //connect to beta hub
+  process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";    //connect to lambdatest hub
 
 async function searchTextOnGoogle() {
   var keys = process.argv;
