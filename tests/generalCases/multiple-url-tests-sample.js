@@ -90,7 +90,7 @@ async function startTest(gridUrl, capabilities, name) {
     .then(() => {
       // For Smartui TakeScreenshot
       console.log("taking screenshot ...")
-      driver.executeScript("smartui.takeScreenshot").then(out => {
+      driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"dom-screenshot"}`).then(out => {
         console.log("RESPONSE :", out)
         return
       });
