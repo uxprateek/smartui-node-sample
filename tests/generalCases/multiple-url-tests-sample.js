@@ -9,7 +9,7 @@ const USERNAME = process.env.LT_USERNAME || "<Your_Username>";
 const KEY = process.env.LT_ACCESS_KEY || "<Your_Access_Key>";
 
 const GRID_HOST =
-  process.env.GRID_HOST || "@beta-smartui-hub.lambdatest.com/wd/hub";    //connect to beta hub
+  process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";    //connect to beta hub
 
 async function searchTextOnGoogle() {
   var keys = process.argv;
@@ -90,7 +90,7 @@ async function startTest(gridUrl, capabilities, name) {
     .then(() => {
       // For Smartui TakeScreenshot
       console.log("taking screenshot ...")
-      driver.executeScript("smartui.takeScreenshot").then(out => {
+      driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"dom-screenshot"}`).then(out => {
         console.log("RESPONSE :", out)
         return
       });
