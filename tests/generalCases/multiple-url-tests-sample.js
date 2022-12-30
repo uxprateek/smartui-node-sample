@@ -9,7 +9,7 @@ const USERNAME = process.env.LT_USERNAME || "<Your_Username>";
 const KEY = process.env.LT_ACCESS_KEY || "<Your_Access_Key>";
 
 const GRID_HOST =
-  process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";    //connect to beta hub
+  process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";    //connect to lambdatest hub
 
 async function searchTextOnGoogle() {
   var keys = process.argv;
