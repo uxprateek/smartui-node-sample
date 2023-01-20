@@ -16,7 +16,7 @@ module.exports=async function startTest(gridUrl, capabilities, name) {
     console.log(caps.name, " : Setup Time :", duration.asSeconds());
 
     // navigate to a url
-    let url = "https://www.lambdatest.com";
+    let url = "https://www.lambdatest.com/blog";
 
     await driver
         .get(url)
