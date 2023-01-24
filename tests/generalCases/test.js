@@ -69,6 +69,7 @@ async function searchTextOnGoogle() {
 
   var gridUrl = "https://" + USERNAME + ":" + KEY + GRID_HOST;
   console.log(gridUrl);
+  console.log(USERNAME);
   console.log(capabilities);
   console.log("Running " + parallelCount + " parallel tests ");
   let i = 1;
