@@ -30,7 +30,7 @@ async function searchTextOnGoogle() {
     "accessKey": KEY,
     name: browserName + platform + version, // name of the test
     build: platform + browserName + version, // name of the build
-    "smartUI.project": "smartuigithub",
+    "smartUI.project": "multiple-url-test",
 
     // will generate random smartUI build if not specified
     // "smartUI.build": "<Your Build Name for Selenium Tests>", 
@@ -79,8 +79,8 @@ async function startTest(gridUrl, capabilities, name) {
   console.log(caps.name, " : Setup Time :", duration.asSeconds());
 
   // navigate to a url
-  let url = "https://demo.lambdatest.com/";
-  let url2 = "https://demo.lambdatest.com/";
+  let url = "https://www.lambdatest.com/";
+  let url2 = "https://www.lambdatest.com/blog/";
   console.log(url);
   console.log(url2);
 
@@ -90,7 +90,7 @@ async function startTest(gridUrl, capabilities, name) {
     .then(() => {
       // For Smartui TakeScreenshot
       console.log("taking screenshot ...")
-      driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"demo-screenshot1"}`).then(out => {
+      driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"web-page"}`).then(out => {
         console.log("RESPONSE :", out)
         return
       });
@@ -106,7 +106,7 @@ async function startTest(gridUrl, capabilities, name) {
 
       // For Smartui TakeScreenshot
       console.log("taking screenshot ...")
-      driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"demo-screenshot2"}`).then(out => {
+      driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"blog-page"}`).then(out => {
         console.log("RESPONSE :", out)
         return
       });
@@ -116,7 +116,7 @@ async function startTest(gridUrl, capabilities, name) {
       });
     })
     .catch((err) => {
-      error = JSON.stringify(err);
+      let error = JSON.stringify(err);
       console.log(error);
       console.log("test failed with reason " + err);
       driver.executeScript("lambda-status=failed");
