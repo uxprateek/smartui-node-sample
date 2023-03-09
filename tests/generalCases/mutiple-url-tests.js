@@ -5,12 +5,12 @@ const automationConfig = require("../../config.json");
 const smartUITests = require("./multiple-urls/urls.json");
 
 // username: Username can be found at automation dashboard
-const USERNAME = process.env.LT_USERNAME || "srivishnua";
+const USERNAME = process.env.LT_USERNAME || "<Your_Usename>";
 
 // AccessKey:  AccessKey can be generated from automation dashboard or profile section
 const KEY =
   process.env.LT_ACCESS_KEY ||
-  "lRPrFiIHat1GfMOOMISoBEcyPoa9XsABtLjAGw4flFgW2PjG1P";
+  "<Your_Access_Key>";
 
 //connect to Lambdatest hub
 const GRID_HOST = process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";
@@ -25,7 +25,7 @@ async function runSmartUIonLambdatest() {
   // Lambdatest Cloud Selenium Grid Connection
 
   // Printing the Lambdatest Cloud Information for the test
-  
+
   console.log(
     "Please visit https://smartui.lambdatest.com to see your Selenium Tests"
   );
