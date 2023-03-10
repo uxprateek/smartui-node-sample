@@ -1,10 +1,10 @@
 [
     {
-        "screenshotName": "Example -1",
-        "url": "http://lambdatest.com"
+        "screenshotName": "Lambdatest Landing Page",
+        "url": "https://lambdatest.com"
     },
     {
-        "screenshotName": "Example -2",
-        "url": "http://google.com"
+        "screenshotName": "Amazon Home Page",
+        "url": "https://amazon.com"
     }
 ]

@@ -6,7 +6,7 @@
         "visual": "true",
         "name": "SmartUi Transparency Test",
         "build": "Smart Ui Transparency Build",
-        "smartUI.project": "Smart UI sample test #fkmvfpkvm",
+        "smartUI.project": "Smart UI sample test #1",
         "selenium_version": "4.0.0"
     },
     {
@@ -16,7 +16,7 @@
         "visual": "true",
         "name": "SmartUi Transparency Test",
         "build": "Smart Ui Transparency Build",
-        "smartUI.project": "Smart UI sample test #fkmvfpkvm",
+        "smartUI.project": "Smart UI sample test #1",
         "selenium_version": "4.0.0"
     }
 ]
