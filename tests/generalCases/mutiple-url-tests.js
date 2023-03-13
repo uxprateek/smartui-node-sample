@@ -5,7 +5,7 @@ const automationConfig = require("../../config.json");
 const smartUITests = require("./multiple-urls/urls.json");
 
 // username: Username can be found at automation dashboard
-const USERNAME = process.env.LT_USERNAME || "<Your_Usename>";
+const USERNAME = process.env.LT_USERNAME || "<Your_Username>";
 
 // AccessKey:  AccessKey can be generated from automation dashboard or profile section
 const KEY =
