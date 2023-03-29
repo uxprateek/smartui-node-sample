@@ -33,3 +33,9 @@ jobs:
 
     - name: Execute Test
       run: npm test
+
+    -name: Run all tests
+      run: npm run start
+    
+    -name: Check multiple URLS with LazyLoading
+      run: npm run multiple
