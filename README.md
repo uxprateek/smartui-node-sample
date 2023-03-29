@@ -1,7 +1,7 @@
 # SmartUI NodeJS Sample
 
 ### Prerequisites
-1. Node version <=14 required
+1. Node version >=14 required
   ```
   node --version
   ```
