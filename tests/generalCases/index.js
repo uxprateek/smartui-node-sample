@@ -1,13 +1,14 @@
-let boundingBoxesTest= require( "./boundingBoxes");
-let  errorTest= require("./errorSetting");
-let ignoredBoxesTest= require("./ignoredBoxes");
-let transparencyTest=require("./transparency");
-let generalTest=require("./general");
-let ignoreAreasColoredWith=require("./ignoreAreasColoredWith");
+let boundingBoxesTest = require("./boundingBoxes");
+let errorTest = require("./errorSetting");
+let ignoredBoxesTest = require("./ignoredBoxes");
+let transparencyTest = require("./transparency");
+let generalTest = require("./general");
+let ignoreAreasColoredWith = require("./ignoreAreasColoredWith");
 let helpLogger = require("../../util/helpLogger");
-let validCommands = require("../../util/validCommands")
+let validCommands = require("../../util/validCommands");
+let capabilities = require("../../config.json");
 
-async function test(){
+async function test() {
   // the command line argument passed while executing
   let arg = process.argv.slice(2)[0];
 
@@ -37,7 +38,6 @@ async function test(){
   };
 
   // Setup Input capabilities
-  let capabilities = require("../../config.json");
   capabilities["user"] = USERNAME;
   capabilities["accessKey"] = KEY;
 

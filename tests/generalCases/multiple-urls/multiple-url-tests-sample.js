@@ -1,16 +1,14 @@
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
 const moment = require("moment");
-const automationConfig = require("../../../config.json");
+const automationConfig = require("./config.json");
 const smartUITests = require("./urls.json");
 
 // username: Username can be found at automation dashboard
 const USERNAME = process.env.LT_USERNAME || "<Your_Username>";
 
 // AccessKey:  AccessKey can be generated from automation dashboard or profile section
-const KEY =
-  process.env.LT_ACCESS_KEY ||
-  "<Your_Access_key>";
+const KEY = process.env.LT_ACCESS_KEY || "<Your_Access_key>";
 
 //connect to Lambdatest hub
 const GRID_HOST = process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";
@@ -25,7 +23,7 @@ async function runSmartUIonLambdatest() {
   // Printing the Lambdatest Cloud Information for the test
 
   console.log(
-    "Please visit https://smartui.lambdatest.com to see your SmartUI - Visual Regression - Selenium Tests"
+    "Please visit https://smartui.lambdatest.com to see your SmartUI - Visual Regression Tests"
   );
 
   try {
@@ -61,6 +59,15 @@ async function smartUISeleniumTest(driver, url, screenshotName) {
       console.log(
         `Capturing the Screenshot Name:  ${screenshotName} | URL: ${url}`
       );
+      driver.manage().setTimeouts({ implicit: 10000 });
+      let images = driver.findElements(webdriver.By.css("img.lazyload"));
+      for (let i = 0; i < images.length; i++) {
+        driver.executeScript("arguments[0].scrollIntoView();", images[i]);
+        driver.wait(until.elementIsVisible(images[i]), 10000); // wait up to 10 seconds for image to appear
+
+        let src = images[i].getAttribute("src");
+        console.log(`Captured image source: ${src}`);
+      }
       driver
         .executeScript(`smartui.takeFullPageScreenshot=${screenshotName}`)
         .then((result) => {
