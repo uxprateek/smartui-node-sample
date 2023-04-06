@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Execute Test
-        run: npm run start
+        run: npm test
 
       - name: Execute Multiple tests
         run: npm run multiple
