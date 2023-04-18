@@ -74,7 +74,7 @@ export LT_ACCESS_KEY="YOUR ACCESS KEY"
 
 2. To create a `New Project` using the SmartUI Web Application, click the **New Project** button in the top-right corner of your dashboard. 
 
-![Screenshot 2023-04-18 133652](https://user-images.githubusercontent.com/126776938/232713410-637a46be-93e1-463c-a97c-5e152ef64b9d.png)
+![Screenshot 2023-04-18 133652](https://user-images.githubusercontent.com/126776938/232756654-ad1f5594-06da-4a42-ac7d-709cefdff5b1.png)
 
 3. Fill in the specifications such as **Platform**, **Project Name**, **Approvers**, and **Tags** as per your requirement and click **Create Project**.
 
