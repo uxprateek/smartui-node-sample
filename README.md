@@ -1,4 +1,4 @@
- Smart UI Testing With Selenium Node.JS ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+ <h1>Smart UI Testing With Selenium Node.JS</h1>
 
 <img height="400" src="https://user-images.githubusercontent.com/126776938/232535511-8d51cf1b-1a33-48fc-825c-b13e7a9ec388.png">
 
@@ -30,6 +30,8 @@
 * [Pre-requisites](#pre-requisites)
 * [Running Your First Selenium Node JS Test](#running-your-first-selenium-node-js-test)
 * [Examples For Different Use Cases](#examples-for-different-use-cases)
+* [Configuring The Test Environment](#configuring-the-test-environment)
+* [Setting Up GitHub App Integration With SmartUI](#setting-up-github-app-integration-with-smartui)
 
 ## Pre-requisites
 
@@ -43,12 +45,20 @@
   nvm install 12.0.0
   node --version
   ```
+  
+3. Create a `New Project` with the SmartUI Web Application.
+
+## Configuring The Test Environment
+
+Before executing your NodeJs test, you need to configure the `config.json` file. You can find the `config.json` file [here](https://github.com/keys-github/smartui-node-sample/blob/main/config.json). To add capabilities, visit our [capabilities generator](https://www.lambdatest.com/capabilities-generator/).
 
 ## Running Your First Selenium Node JS Test
 
-1. Before getting started, set the LambdaTest Username and Access Key in environment variables.
+1. In order to run your Smart UI tests with Selenium Python, you will need to set your LambdaTest username and access key in the environment variables. Click the **Access Key** button at the top-right of the Automation Dashboard to access it.
 
- **Windows**
+![Screenshot 2023-04-18 132921](https://user-images.githubusercontent.com/126776938/232711334-676f1895-d223-4ee2-9bff-d82837715520.png)
+
+**Windows**
 
 ```js
 set LT_USERNAME="YOUR_USERNAME" 
@@ -62,12 +72,20 @@ export LT_USERNAME="YOUR_USERNAME"
 export LT_ACCESS_KEY="YOUR ACCESS KEY"
 ```
 
-2. Clone the `smartui-node-sample` Repo.
+2. To create a `New Project` using the SmartUI Web Application, click the **New Project** button in the top-right corner of your dashboard. 
+
+![Screenshot 2023-04-18 133652](https://user-images.githubusercontent.com/126776938/232713410-637a46be-93e1-463c-a97c-5e152ef64b9d.png)
+
+3. Fill in the specifications such as **Platform**, **Project Name**, **Approvers**, and **Tags** as per your requirement and click **Create Project**.
+
+![Screenshot 2023-04-18 134121](https://user-images.githubusercontent.com/126776938/232714262-56ae0be3-3ba3-4ba3-8e82-2f063657fcaf.png)
+
+3. Clone the `smartui-node-sample` Repo.
   ```
   git clone https://github.com/LambdaTest/smartui-node-sample
   ```
 
-3. Install the Dependencies.
+4. Install the Dependencies.
   ```
   npm i
   ```
@@ -119,6 +137,119 @@ We have many different examples revolving around different use cases. They are a
       ```
       npm start ignoreAreasColoredWith
       ```
+
+### Execute Tests on Multiple URLs
+
+To get started, first configure the `url.json` with the help of the code given below.
+
+```bash
+[
+    {
+        "screenshotName": "Lambdatest Landing Page",
+        "url": "https://lambdatest.com"
+    },
+    {
+        "screenshotName": "Amazon Home Page",
+        "url": "https://amazon.com"
+    }
+]
+```
+
+Run the following command to execute tests on multiple URLs.
+
+```bash
+npm run multiple
+```
+
+Given below is the multiple URL tests sample.
+
+```bash
+const webdriver = require("selenium-webdriver");
+const By = webdriver.By;
+const moment = require("moment");
+const automationConfig = require("./config.json");
+const smartUITests = require("./urls.json");
+
+// username: Username can be found at automation dashboard
+const USERNAME = process.env.LT_USERNAME || "<Your_Username>";
+
+// AccessKey:  AccessKey can be generated from automation dashboard or profile section
+const KEY = process.env.LT_ACCESS_KEY || "<Your_Access_key>";
+
+//connect to Lambdatest hub
+const GRID_HOST = process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";
+
+const gridUrl = "https://" + USERNAME + ":" + KEY + GRID_HOST;
+
+// Selenium WebDriver Function
+
+async function runSmartUIonLambdatest() {
+  // Lambdatest Cloud Selenium Grid Connection
+
+  // Printing the Lambdatest Cloud Information for the test
+
+  console.log(
+    "Please visit https://smartui.lambdatest.com to see your SmartUI - Visual Regression Tests"
+  );
+
+  try {
+    automationConfig.forEach(async (...config) => {
+      const driver = await new webdriver.Builder()
+        .usingServer(gridUrl)
+        .withCapabilities(...config)
+        .build();
+      try {
+        smartUITests.forEach((smartUITest) => {
+          let smartUI_ScreenshotName = smartUITest.screenshotName;
+          let smartUI_url = smartUITest.url;
+          smartUISeleniumTest(driver, smartUI_url, smartUI_ScreenshotName);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      // Closing the Browser Session
+      await driver.executeScript("lambda-status=failed");
+      await driver.quit();
+    });
+  } catch (err) {
+    console.log(JSON.stringify(err));
+    await driver.executeScript("lambda-status=failed");
+  }
+}
+
+async function smartUISeleniumTest(driver, url, screenshotName) {
+  await driver
+    .get(url)
+    .then(() => {
+      // For Smartui TakeScreenshot
+      console.log(
+        `Capturing the Screenshot Name:  ${screenshotName} | URL: ${url}`
+      );
+      driver.manage().setTimeouts({ implicit: 10000 });
+      let images = driver.findElements(webdriver.By.css("img.lazyload"));
+      for (let i = 0; i < images.length; i++) {
+        driver.executeScript("arguments[0].scrollIntoView();", images[i]);
+        driver.wait(until.elementIsVisible(images[i]), 10000); // wait up to 10 seconds for image to appear
+
+        let src = images[i].getAttribute("src");
+        console.log(`Captured image source: ${src}`);
+      }
+      driver
+        .executeScript(`smartui.takeFullPageScreenshot=${screenshotName}`)
+        .then((result) => {
+          console.log("Result :", result);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+// Executing the tests in parallel of multiple urls
+runSmartUIonLambdatest();
+```
+
+
       
 ### Execute Tests on Multiple Resolutions
 
@@ -165,6 +296,75 @@ $ node custom-resolutions.js 1920x1080
 ```
 $ node custom-resolutions.js 2560x1440
 ```
+
+## Setting Up Github App Integration with SmartUI
+
+### Steps 1: Integrate the your Lambdatest Account with GitHub App. 
+
+You can integrate your LambdaTest account with the GiHub application in the following ways:
+
+- Using OAuth
+
+![github-app-landing-92ef6e152a7302cb9ab88f5034b9ec0c](https://user-images.githubusercontent.com/126776938/232715867-f375b4df-1bc9-4e88-8340-44e986be2e9a.png)
+
+
+### Step 2: Select your GitHub repository 
+
+Go to your GitHub repository where you want to configure your SmartUI project. Check out our GitHub sample [here](https://github.com/LambdaTest/smartui-node-sample).
+
+### Step 3: Configure your test suite
+
+Add the `Github` capability to your current test configuration:
+
+```bash
+const capabilities: {
+  platform: "Windows 10",
+  browserName: "chrome",
+  version: "latest",
+  "smartUI.project": "Smart UI sample test",
+   github: {
+    "url": "https://api.github.com/repos/OWNER/REPO/statuses/commitId", // Mandatory
+    "owner": "{OWNER}",  //Optional
+    "repo": "{REPO}",  //Optional
+    "commit": "{commitId}" //Optional
+   }
+}
+```
+
+### Step 4: Setting up your CI configuration
+
+Setting up your CI workflow to execute on GitHub. Here is an example setup with `GitHub Actions`:
+
+Go to `.github/workflows/<your_ci_file>.yml`.
+
+```bash
+    name: Execute SmartUI Test with Github App Integration
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Create commit status
+      run: |
+        API_HOST=https://api.github.com
+        # Check out the PR branch
+        git checkout $GITHUB_HEAD_REF
+        # Get the commit ID of the last commit
+        COMMIT_ID=$(git rev-parse HEAD)
+        echo "Last commit ID of PR: $COMMIT_ID"
+        GITHUB_URL=$API_HOST/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_ID
+        echo "GITHUB_URL: $GITHUB_URL"
+        echo "GITHUB_URL=$GITHUB_URL" >> $GITHUB_ENV
+```
+
+### Step5: Execute your test suite with CI
+
+After the setup is completed, you can now execute your test suite with the Continuos Integration (CI) pipeline with any tool of your choice.
+
+**Please Note:** *On running the tests with this repository the user should be able to trigger the `GitHub Action` and execute the `SmartUI` tests for `Selenium`, `Cypress and CDP` frameworks excluding `StoryBook`.* 
+
+### Step 6: Commit you changes over git on a branch and raise the PR to main branch.
+
+### Step 7: Now you will see the `lambdatest-smartui-app` in the PR.
 
 ## Documentation & Resources :books:
       
