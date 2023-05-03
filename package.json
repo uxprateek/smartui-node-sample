@@ -12,7 +12,8 @@
   "scripts": {
     "start": "node ./tests/generalCases/index.js",
     "test": "node ./tests/generalCases/test.js",
-    "multiple": "node ./tests/generalCases/multiple-urls/multiple-url-tests-sample.js"
+    "multiple": "node ./tests/generalCases/multiple-urls/multiple-url-tests-sample.js",
+    "multiple-config": "node ./tests/generalCases/multiple-urls/parallel-config-sample.js"
   },
   "repository": {
     "type": "git",
