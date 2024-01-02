@@ -2,9 +2,13 @@
   "dependencies": {
     "minimatch": "^3.0.5",
     "moment": "^2.29.4",
+    "playwright": "^1.35.1",
     "scroll-to-bottomjs": "^1.1.0",
-    "selenium-webdriver": "^3.6.0"
+    "@lambdatest/selenium-driver": "^1.0.0",
+    "@lambdatest/smartui-cli": "^2.0.0",
+    "selenium-webdriver": "^4.16.0"
   },
+  "type": "module",
   "name": "nodejs-selenium-sample",
   "description": "![LambdaTest Logo](https://www.lambdatest.com/images/logo.svg)",
   "version": "1.0.0",
@@ -25,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/LambdaTest/nodejs-selenium-sample/issues"
   },
-  "homepage": "https://github.com/LambdaTest/nodejs-selenium-sample#readme"
+  "homepage": "https://github.com/LambdaTest/nodejs-selenium-sample#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.35.1"
+  }
 }
