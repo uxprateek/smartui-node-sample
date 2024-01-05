@@ -22,5 +22,6 @@
 
 *Learn the how to get started with Smart UI testing with Selenium Node.JS on the LambdaTest platform.*
 
-- Use the hooks folder to utilize LT-hooks in your LT remote automation tests (https://www.lambdatest.com/support/docs/selenium-visual-regression/)
-- Use the sdk folder to utilze the SmartUI sdk in your local or remote automation tests (https://www.lambdatest.com/support/docs/smartui-selenium-js-sdk/)
+- **LT-Hooks Integration**: Dive into the hooks folder to seamlessly integrate LT-hooks into your LT remote automation tests. This integration allows you to leverage the full potential of LambdaTest's visual regression testing capabilities, enhancing your automated testing efficiency. Discover more about how to implement LT-hooks in your tests by visiting our detailed guide at [LambdaTest Selenium Visual Regression Documentation](https://www.lambdatest.com/support/docs/selenium-visual-regression/).
+
+- **SmartUI SDK Utilization**: Explore the sdk folder to utilize the SmartUI SDK in both your local and remote automation tests. By incorporating our SDK, you unlock advanced features for comprehensive visual testing, ensuring DOM capturing and rendering across multiple browsers and reolutions for your web applications. Learn more about implementing the SmartUI SDK and its benefits in your testing workflow by checking out the [SmartUI Selenium JavaScript SDK Documentation](https://www.lambdatest.com/support/docs/smartui-selenium-js-sdk/).
