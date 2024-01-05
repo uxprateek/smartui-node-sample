@@ -10,7 +10,7 @@
   "description": "",
   "main": "sdk.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "smartui": "smartui exec node sdk.js"
   },
   "author": "",
   "license": "ISC"
