@@ -1,3 +1,5 @@
+# Integrating SmartUI SDK with Selenium(JS) tests
+
 Welcome to the world of simplified visual testing with the SmartUI SDK. 
 
 Integrating seamlessly into your existing Selenium testing suite, SmartUI SDK revolutionizes the way you approach visual regression testing. Our robust solution empowers you to effortlessly capture, compare, and analyze screenshots across a multitude of browsers and resolutions, ensuring comprehensive coverage and accuracy in your visual testing endeavors.
@@ -35,21 +37,12 @@ git clone https://github.com/LambdaTest/smartui-node-sample
 Install required NPM modules for `LambdaTest Smart UI Selenium SDK` in your **Frontend** project.
 
 ```bash
-npm init
+npm i @lambdatest/smartui-cli @lambdatest/selenium-driver selenium-webdriver
 ```
 
-```bash
-npm i -g @lambdatest/smartui-cli
-```
-```bash
-npm i @lambdatest/selenium-driver 
-```
-```bash
-npm i selenium-webdriver
-```
+<b>To ensure seamless execution of ES6 modules within our repository, it is essential to configure the Node.js environment to recognize ES6 module syntax. This is accomplished by specifying the module type in your `package.json` file.</b>
 
-**To ensure seamless execution of ES6 modules within our repository, it is essential to configure the Node.js environment to recognize ES6 module syntax. This is accomplished by specifying the module type in your `package.json` file.
-** 
+
 ```bash
 "type": "module"
 ```
@@ -99,8 +92,7 @@ Once, the configuration file will be created, you will be seeing the default con
       "chrome", 
       "firefox",
       "safari",
-      "edge",
-      // Add more browser configuration here
+      "edge"
     ],
     "viewports": [
       [
@@ -116,8 +108,8 @@ Once, the configuration file will be created, you will be seeing the default con
         640
       ]
     ],
-    "waitForPageRender": 50000, // Optional (Should only be used in case of websites which take more than 30s to load)
-    "waitForTimeout": 1000 //Optional (Should only be used in case lazy-loading/async components are present )
+    "waitForPageRender": 50000, 
+    "waitForTimeout": 1000
 
   }
 }
@@ -166,7 +158,7 @@ import { smartuiSnapshot } from '@lambdatest/selenium-driver';
 Execute `visual regression tests` on SmartUI using the following commands
 
 ```bash
-smartui exec node <fileName>.js
+npx smartui exec node <fileName>.js
 ```
 
 **You may use the `smartui --help` command in case you are facing issues during the execution of SmartUI commands in the CLI.
@@ -177,8 +169,6 @@ You have successfully integrated SmartUI SDK with your Selenium tests. Visit you
 
 You can see the Smart UI dashboard to view the results. This will help you identify the mis-matches from the existing `Baseline` build and do the required visual testing.
 
-
-<img loading="lazy" src={require('../assets/images/smart-visual-testing/smartui_ss_cli.png').default} alt="cmd" width="768" height="373" className="doc_img"/>
 
 
 For additional information about SmartUI APIs please explore the documentation [here](https://www.lambdatest.com/support/api-doc/)
