@@ -106,3 +106,60 @@ node .examples\test.js
 - **Purpose:** Use the SmartUI SDK for comprehensive visual testing in both local and remote automation tests environments.
 - **Advantages:** Ensure consistent DOM capturing and rendering across various browsers and resolutions.
 - **More Information:** [SmartUI Selenium JavaScript SDK Documentation](https://www.lambdatest.com/support/docs/smartui-selenium-js-sdk/).
+
+##### Steps:
+- Install the dependencies 
+```bash
+cd sdk
+npm i @lambdatest/smartui-cli @lambdatest/selenium-driver selenium-webdriver
+```
+- Configure your Project Token
+
+Setup your project token show in the **SmartUI** app after, creating your project.
+
+<Tabs className="docs__val" groupId="language">
+<TabItem value="MacOS/Linux" label="MacOS/Linux" default>
+
+```bash
+export PROJECT_TOKEN="123456#1234abcd-****-****-****-************"
+```
+
+</TabItem>
+<TabItem value="Windows" label="Windows - CMD">
+
+```bash
+set PROJECT_TOKEN="123456#1234abcd-****-****-****-************"
+```
+
+</TabItem>
+<TabItem value="Powershell" label="Windows-PS">
+
+```bash
+$Env:PROJECT_TOKEN="123456#1234abcd-****-****-****-************"
+```
+</TabItem>
+</Tabs>
+
+- Add the SmartUI function to take screenshot to `sdkLocal.js` file
+```js
+import  { Builder, By, Key, until } from 'selenium-webdriver';
+import { smartuiSnapshot } from '@lambdatest/selenium-driver';
+
+(async function example() {
+    let driver = await new Builder()
+        .forBrowser('chrome')
+        .build();
+
+    try {
+        await driver.get('<Required URL>'); //enter your desired URL here
+        await smartuiSnapshot(driver, '<Screenshot_Name>');
+    } finally {
+        await driver.quit();
+    }
+})();
+```
+- Execute the Tests on SmartUI Cloud
+
+```bash
+npx smartui exec node <fileName>.js
+```
