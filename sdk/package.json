@@ -8,7 +8,7 @@
   "name": "sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "SmartUI_SDK.js",
+  "main": "sdk.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
