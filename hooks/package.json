@@ -8,7 +8,6 @@
     "@lambdatest/smartui-cli": "^2.0.0",
     "selenium-webdriver": "^4.16.0"
   },
-  "type": "module",
   "name": "nodejs-selenium-sample",
   "description": "![LambdaTest Logo](https://www.lambdatest.com/images/logo.svg)",
   "version": "1.0.0",
