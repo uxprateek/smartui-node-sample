@@ -50,7 +50,7 @@ set LT_ACCESS_KEY="<Your Access Key>"
 
 For Windows PowerShell
 
-```ps
+```bash
 $env:LT_USERNAME="<Your Username>"
 $env:LT_ACCESS_KEY="<Your Access Key>"
 ```
