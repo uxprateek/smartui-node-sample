@@ -67,6 +67,32 @@ Now, navigate to `SmartUI` section from the sidebar and create a new project wit
 - **Purpose:** Enhance visual regression capabilities in your LambdaTest web automation tests.
 - **Benefits:** Increase efficiency with advanced testing features with visual regression testing.
 - **Documentation:** [LambdaTest Selenium Visual Regression Documentation](https://www.lambdatest.com/support/docs/selenium-visual-regression/).
+##### **Steps:**
+- Install the dependencies.
+- Configure the capabilities (SmartUI Project Name)
+```javascript
+let capabilities = {
+  platform: "Windows 10", // Configure your OS for Selenium test
+  browserName: "chrome", // Configure your Browser for Selenium test
+  version: "latest", // Configure your Browser Version for Selenium test
+  visual: true, // Configure your Capture screenshot  for Selenium test
+  name: "test session", // name of the test for Selenium
+  build: "Automation Build", // name of the build for Selenium
+  //highlight-start
+  "smartUI.project": "<Your Project Name>", // Replace the name of project with the new project name
+  "smartUI.build": "<Your Build Name>", // Replace the name of Build with the new Build name
+  "smartUI.baseline": false, // Enable if you want to update to a new baseline build
+  //highlight-end
+};
+```
+- Add the Screenshot hook:
+```js
+let config = {
+  screenshotName: '<Name of your screenshot>'
+};
+await driver.executeScript("smartui.takeScreenshot", config);
+```
+- Run the script
 
 
 #### SmartUI SDK Utilization
