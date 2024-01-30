@@ -1,5 +1,5 @@
-import { Builder, By, Key, until } from "selenium-webdriver";
-import { smartuiSnapshot } from "@lambdatest/selenium-driver";
+const { Builder, By, Key, until } = require('selenium-webdriver');
+const { smartuiSnapshot } = require('@lambdatest/selenium-driver');
 
 // username: Username can be found at automation dashboard
 const USERNAME = process.env.LT_USERNAME || "<USERNAME>";

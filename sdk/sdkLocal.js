@@ -1,5 +1,5 @@
-import { Builder, By, Key, until } from "selenium-webdriver";
-import { smartuiSnapshot } from "@lambdatest/selenium-driver";
+const { Builder, By, Key, until } = require('selenium-webdriver');
+const { smartuiSnapshot } = require('@lambdatest/selenium-driver');
 
 (async function example() {
   let driver = await new Builder().forBrowser("chrome").build();
