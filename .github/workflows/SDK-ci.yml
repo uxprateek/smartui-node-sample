@@ -25,7 +25,7 @@ jobs:
           npm i @lambdatest/smartui-cli
       - name: Execute NodeJS Wrapper
         run: |
+          cd sdk
           npx smartui --version
           npx smartui config:create smartui-web.json
-          cd sdk
           npx smartui --config smartui-web.json exec -- npm run smartui-cloud
