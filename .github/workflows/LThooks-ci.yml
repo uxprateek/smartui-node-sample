@@ -1,4 +1,4 @@
-name: Quality Checks
+name: NodeJS Selenium Web Autoamtion Hooks CI
 on:
   pull_request:
     branches:
