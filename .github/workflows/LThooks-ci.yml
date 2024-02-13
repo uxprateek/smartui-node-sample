@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd hooks 
+          cd hooks
           npm install
 
       - name: Execute Test
