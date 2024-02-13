@@ -29,7 +29,7 @@ jobs:
           echo "GITHUB_URL=$GITHUB_URL" >> $GITHUB_ENV
 
       - name: Install Dependencies
-        run: npm install
+        run: cd hooks && npm install
 
       - name: Execute Test
         run: npm test
