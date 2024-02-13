@@ -14,7 +14,7 @@ jobs:
     name: Execute SmartUI Test with Github App Integration
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - name: Create commit status
         run: |
