@@ -17,8 +17,11 @@ jobs:
     name: Execute NodeJS sdk build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout code
+        if: github.event_name == 'pull_request'
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Install Dependencies
         run: |

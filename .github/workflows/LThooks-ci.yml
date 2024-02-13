@@ -14,7 +14,11 @@ jobs:
     name: Execute SmartUI Test with Github App Integration
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Create commit status
         run: |
