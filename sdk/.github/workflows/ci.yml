@@ -13,17 +13,17 @@ env:
   SMARTUI_DEBUG: true
 
 jobs:
-  smartui-java-sdk:
-    name: Execute java sdk build
+  smartui-nodejs-sdk:
+    name: Execute NodeJS sdk build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Install Dependencies and clean directory
+      - name: Install Dependencies
         run: |
           npm i @lambdatest/smartui-cli
-      - name: Execute java wrapper
+      - name: Execute NodeJS Wrapper
         run: |
           npx smartui --version
           npx smartui config:create smartui-web.json
