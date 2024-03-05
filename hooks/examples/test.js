@@ -14,6 +14,25 @@ const KEY = process.env.LT_ACCESS_KEY || "accessKey";
 const GRID_HOST =
 process.env.GRID_HOST || "@hub.lambdatest.com/wd/hub";    //connect to lambdatest hub
 
+const capability = {
+	"browserName": "Chrome",
+	"browserVersion": "122.0",
+	"LT:Options": {
+		"username": "Your LambdaTest Username",
+		"accessKey": "Your LambdaTest Access Key",
+		"visual": true,
+		"video": true,
+		"platformName": "Windows 10",
+		"build": "Test run",
+		"project": "Prateek test",
+		"smartUI.project": "Test",
+		"w3c": true,
+		"plugin": "node_js-node_js"
+	}
+}
+
+driver.executeScript(`smartui.takeScreenshot,{"screenshotName":"<First test snapshot>"}`)
+
 async function searchTextOnGoogle() {
   var keys = process.argv;
   console.log(keys);
